@@ -21,6 +21,10 @@
     "type": "Microsoft.Network/virtualNetworks",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
+    "tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      },
     "properties": {
       "addressSpace": {
       "addressPrefixes": [
