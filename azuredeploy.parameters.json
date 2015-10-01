@@ -1,0 +1,24 @@
+{
+  "location" : {
+    "value" :"west us"
+  },
+  "adminUsername": {
+    "value": "#####"
+  },
+  "adminPassword": {
+    "value" : "#####"
+  },
+  "storageAccountNamePrefix": {
+    "value": "msastor"
+  },
+  "storageAccountType": {
+    "value" : "Standard_LRS"
+  },
+  "termVMSize" : {
+    "value" : "Standard_D1"
+  },
+  "sqlVMSize" : {
+    "value" : "Standard_D3"
+  }
+}
+
