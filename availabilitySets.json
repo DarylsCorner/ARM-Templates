@@ -17,35 +17,35 @@
   },
   "resources": [
     {
-			"type": "Microsoft.Compute/availabilitySets",
-			"name": "[parameters('groupAAvailabilitySetName')]",
-			"apiVersion": "2015-06-15",
-			"location": "[parameters('location')]",
-			"tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      }
-		},
-		{
-			"type": "Microsoft.Compute/availabilitySets",
-			"name": "[parameters('groupBAvailabilitySetName')]",
-			"apiVersion": "2015-06-15",
-			"location": "[parameters('location')]",
-			"tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      }
-		},
-		{
-			"type": "Microsoft.Compute/availabilitySets",
-			"name": "[parameters('groupCAvailabilitySetName')]",
-			"apiVersion": "2015-06-15",
-			"location": "[parameters('location')]",
-			"tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      }
-		},
+    	"type": "Microsoft.Compute/availabilitySets",
+        "name": "[parameters('groupAAvailabilitySetName')]",
+        "apiVersion": "2015-06-15",
+        "location": "[parameters('location')]",
+        "tags": {
+        	"project": "[variables('project')]",
+                "costCenter": "[variables('costCenter')]"
+        }
+    },
+    {
+  	"type": "Microsoft.Compute/availabilitySets",
+	"name": "[parameters('groupBAvailabilitySetName')]",
+	"apiVersion": "2015-06-15",
+	"location": "[parameters('location')]",
+	"tags": {
+	    	"project": "[variables('project')]",
+	 	"costCenter": "[variables('costCenter')]"
+        }
+    },
+    {
+        "type": "Microsoft.Compute/availabilitySets",
+	"name": "[parameters('groupCAvailabilitySetName')]",
+	"apiVersion": "2015-06-15",
+	"location": "[parameters('location')]",
+	"tags": {
+	  	"project": "[variables('project')]",
+                "costCenter": "[variables('costCenter')]"
+        }
+    },
   ],
   "outputs": {
     "groupAAvailabilitySetName": {
@@ -62,4 +62,5 @@
     }
   }
 }
+
 
