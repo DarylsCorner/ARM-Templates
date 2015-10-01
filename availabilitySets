@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "groupAAvailabilitySetName": {
+      "type": "string"
+    },
+    "groupBAvailabilitySetName": {
+      "type": "string"
+    },
+    "groupCAvailabilitySetName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+			"type": "Microsoft.Compute/availabilitySets",
+			"name": "[parameters('groupAAvailabilitySetName')]",
+			"apiVersion": "2015-06-15",
+			"location": "[parameters('location')]",
+			"tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      }
+		},
+		{
+			"type": "Microsoft.Compute/availabilitySets",
+			"name": "[parameters('groupBAvailabilitySetName')]",
+			"apiVersion": "2015-06-15",
+			"location": "[parameters('location')]",
+			"tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      }
+		},
+		{
+			"type": "Microsoft.Compute/availabilitySets",
+			"name": "[parameters('groupCAvailabilitySetName')]",
+			"apiVersion": "2015-06-15",
+			"location": "[parameters('location')]",
+			"tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      }
+		},
+  ],
+  "outputs": {
+    "groupAAvailabilitySetName": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Compute/availabilitySets',parameters('groupAAvailabilitySetName'))]"
+    },
+    "groupBAvailabilitySetName": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Compute/availabilitySets',parameters('groupBAvailabilitySetName'))]"
+    },
+    "groupCAvailabilitySetName": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Compute/availabilitySets',parameters('groupCAvailabilitySetName'))]"
+    }
+  }
+}
+
