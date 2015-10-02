@@ -16,24 +16,24 @@
     }
   },
   "resources": [
-  {
-    "name": "[parameters('virtualNetworkName')]",
-    "type": "Microsoft.Network/virtualNetworks",
-    "location": "[parameters('location')]",
-    "apiVersion": "2015-06-15",
-    "tags": {
+    {
+      "name": "[parameters('virtualNetworkName')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[parameters('location')]",
+      "apiVersion": "2015-06-15",
+      "tags": {
         "project": "[variables('project')]",
         "costCenter": "[variables('costCenter')]"
       },
-    "properties": {
-      "addressSpace": {
-      "addressPrefixes": [
-        "[parameters('virtualNetworkAddressRange')]"
-      ]
-      },
-      "subnets": "[parameters('subnets')]"
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('virtualNetworkAddressRange')]"
+          ]
+        },
+        "subnets": "[parameters('subnets')]"
+      }
     }
-  }
   ]
 }
 
