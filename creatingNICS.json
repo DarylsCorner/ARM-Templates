@@ -1,0 +1,89 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "WEST US"
+    },
+    "sqlNicName": {
+      "type": "string"
+    },
+    "sqlNICIPAddress": {
+      "type": "string",
+      "defaultValue": "10.6.3.200"
+    },
+    "sqlSubnetRef": {
+      "type": "string"
+    },
+    "sqlVMName": {
+      "type": "string",
+      "defaultValue": "msa-vm-sql"
+    },
+    "tsNicName": {
+      "type": "string"
+    },
+    "tsVMName": {
+      "type": "string",
+      "defaultValue": "msa-vm-ts"
+    },
+    "tsSubnetRef": {
+      "type": "string"
+    }
+  },
+  "resources": [
+  {
+    "name": "[concat(parameters('sqlVMName'),'1-nic')]",
+    "type": "Microsoft.Network/networkInterfaces",
+    "location": "[parameters('location')]",
+    "apiVersion": "2015-06-15",
+    "tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      },
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig1",
+          "properties": {
+            "privateIPAllocationMethod": "Static",
+            "privateIPAddress" :"[parameters('sqlNICIPAddress')]",
+            "subnet": {
+              "id": "[parameters('sqlSubnetRef')]"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "[concat(parameters('tsVMName'), copyindex(),'-nic')]",
+    "type": "Microsoft.Network/networkInterfaces",
+    "location": "[parameters('location')]",
+    "apiVersion": "2015-06-15",
+    "tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      },
+    "copy": {
+      "name": "tsnicLoop",
+      "count": 6
+    },
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig1",
+          "properties": {
+            "privateIPAllocationMethod": "Dynamic",
+            "subnet": {
+              "id": "[parameters('tsSubnetRef')]"
+            }
+          }
+        }
+      ]
+    }
+  }
+],
+"outputs": {}
+}
+
