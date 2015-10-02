@@ -158,7 +158,7 @@
       "VnetID":"[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
       "tsSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').tsSubnetName)]",
       "sqlSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').sqlSubnetName)]",
-      "sqlNicName":"[concat(variables('vmSettings').sqlVMName,'-nic')]",
+      "sqlNicName":"[concat(variables('vmSettings').sqlVMName,'1-nic')]",
       "ids":{
          "sqlNicId":"[resourceId('Microsoft.Network/networkInterfaces',variables('sqlNicName'))]"
       },
