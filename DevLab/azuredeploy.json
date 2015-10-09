@@ -185,6 +185,7 @@
          "rdpIPAdressSetupURL":"[concat(parameters('baseUrl'),'/publicip-rdp.json')]",
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
+         "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
          "vnetSetupURL":"[concat(parameters('baseUrl'),'/vnet-new.json')]",
          "creatingNicsUrl":"[concat(parameters('baseUrl'),'/creatingNICS.json')]"
@@ -406,7 +407,7 @@
          }
       },
       {
-         "name":"ProvisioningPrimaryADDomainController",
+         "name":"CreatingTSgroupAVirtualMachines ",
          "type":"Microsoft.Resources/deployments",
          "apiVersion":"2015-01-01",
          "dependsOn":[
@@ -418,12 +419,12 @@
          "properties":{
             "mode":"Incremental",
             "templateLink":{
-               "uri":"[variables('configuration').provisioningPrimaryDCURL]",
+               "uri":"[variables('configuration').creatingTSgroupAVMsURL]",
                "contentVersion":"1.0.0.0"
             },
             "parameters":{
-               "adPDCVMName":{
-                  "value":"[variables('vmSettings').adPDCVMName]"
+               "tsVMName":{
+                  "value":"[variables('vmSettings').tsVMName]"
                },
                "location":{
                   "value":"[parameters('location')]"
@@ -432,10 +433,10 @@
                   "value":"[parameters('storageAccountNamePrefix')]"
                },
                "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.adAvailabilitySetName.value]"
+                  "value":"[reference('CreatingAvailabilitySets').outputs.groupAAvailabilitySetName.value]"
                },
-               "adVMSize":{
-                  "value":"[parameters('adVMSize')]"
+               "tsVMSize":{
+                  "value":"[parameters('tsVMSize')]"
                },
                "adminUsername":{
                   "value":"[parameters('adminUsername')]"
@@ -455,151 +456,8 @@
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
                },
-               "adPDCNicName":{
-                  "value":"[variables('adPDCNicName')]"
-               },
-               "domainName":{
-                  "value":"[parameters('domainName')]"
-               },
-               "adPDCConfigurationFunction":{
-                  "value":"[variables('configuration').adPDCConfigurationFunction]"
-               },
-               "adPDCModulesURL":{
-                  "value":"[variables('configuration').adPDCModulesURL]"
-               }
-            }
-         }
-      },
-      {
-         "name":"UpdatingDNStoPrimaryADVM",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "ProvisioningPrimaryADDomainController"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').vnetwithDNSTemplateURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "virtualNetworkName":{
-                  "value":"[parameters('virtualNetworkName')]"
-               },
-               "virtualNetworkAddressRange":{
-                  "value":"[parameters('virtualNetworkAddressRange')]"
-               },
-               "subnets":{
-                  "value":"[variables('subnets')]"
-               },
-               "DNSServerAddress":{
-                  "value":[
-                     "[parameters('adPDCNICIPAddress')]"
-                  ]
-               }
-            }
-         }
-      },
-      {
-         "name":"ProvisioningBackupADDomainController",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "Microsoft.Resources/deployments/CreatingStorageAccounts",
-            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
-            "Microsoft.Resources/deployments/CreatingAvailabilitySets",
-            "Microsoft.Resources/deployments/UpdatingDNStoPrimaryADVM"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').provisioningBackupDCURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "adBDCVMName":{
-                  "value":"[variables('vmSettings').adBDCVMName]"
-               },
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "storageAccountNamePrefix":{
-                  "value":"[parameters('storageAccountNamePrefix')]"
-               },
-               "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.adAvailabilitySetName.value]"
-               },
-               "adVMSize":{
-                  "value":"[parameters('adVMSize')]"
-               },
-               "adminUsername":{
-                  "value":"[parameters('adminUsername')]"
-               },
-               "adminPassword":{
-                  "value":"[parameters('adminPassword')]"
-               },
-               "windowsImagePublisher":{
-                  "value":"[variables('vmSettings').windowsImagePublisher]"
-               },
-               "windowsImageOffer":{
-                  "value":"[variables('vmSettings').windowsImageOffer]"
-               },
-               "windowsImageSKU":{
-                  "value":"[variables('vmSettings').windowsImageSKU]"
-               },
-               "vmContainerName":{
-                  "value":"[variables('vmSettings').vmContainerName]"
-               },
-               "adBDCNicName":{
-                  "value":"[variables('adBDCNicName')]"
-               },
-               "domainName":{
-                  "value":"[parameters('domainName')]"
-               },
-               "adBDCConfigurationFunction":{
-                  "value":"[variables('configuration').adBDCConfigurationFunction]"
-               },
-               "adBDCModulesURL":{
-                  "value":"[variables('configuration').adBDCModulesURL]"
-               }
-            }
-         }
-      },
-      {
-         "name":"UpdatingDNSwithBackupADVM",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "Microsoft.Resources/deployments/ProvisioningBackupADDomainController"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').vnetwithDNSTemplateURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "virtualNetworkName":{
-                  "value":"[parameters('virtualNetworkName')]"
-               },
-               "virtualNetworkAddressRange":{
-                  "value":"[parameters('virtualNetworkAddressRange')]"
-               },
-               "subnets":{
-                  "value":"[variables('subnets')]"
-               },
-               "DNSServerAddress":{
-                  "value":[
-                     "[parameters('adPDCNICIPAddress')]",
-                     "[parameters('adBDCNICIPAddress')]"
-                  ]
+               "tsNicName":{
+                  "value":"[variables('tsNicName')]"
                }
             }
          }
@@ -628,9 +486,6 @@
                },
                "storageAccountNamePrefix":{
                   "value":"[parameters('storageAccountNamePrefix')]"
-               },
-               "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.sqlAvailabilitySetName.value]"
                },
                "sqlVMSize":{
                   "value":"[parameters('sqlVMSize')]"
