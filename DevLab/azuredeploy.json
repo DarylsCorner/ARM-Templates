@@ -130,7 +130,7 @@
             "description":"Base URL for Marketplace",
             "artifactsBaseUrl":""
          },
-         "defaultValue":"https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/sharepoint-server-farm-ha"
+         "defaultValue":"https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/DevLab"
       }
    },
    "variables":{
