@@ -1,1 +1,108 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "sqlVMName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "storageAccountNamePrefix": {
+      "type": "string"
+    },
+    "availabilitySet" : {
+      "type" : "string"
+    },
+    "sqlVMSize" : {
+      "type" : "string"
+    },
+    "adminUsername" : {
+      "type" : "string"
+    },
+    "adminPassword" : {
+      "type" : "securestring"
+    },
+    "windowsImagePublisher" : {
+      "type" : "string"
+    },
+    "windowsImageOffer" : {
+      "type" : "string"
+    },
+    "windowsImageSKU" : {
+      "type" : "string"
+    },
+    "vmContainerName" : {
+      "type" : "string"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[concat(parameters('sqlVMName'), copyindex(1))]",
+      "location": "[parameters('location')]",
+      "copy": {
+        "name": "sqlvirtualMachineLoop",
+        "count": 1
+      },
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('sqlVMSize')]"
+        },
+        "availabilitySet": {
+          "id": "[parameters('availabilitySet')]"
+        },
+        "osProfile": {
+          "computername": "[concat(parameters('sqlVMName'), copyindex(1))]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[parameters('windowsImagePublisher')]",
+            "offer": "[parameters('windowsImageOffer')]",
+            "sku": "[parameters('windowsImageSKU')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "name": "osdisk",
+            "vhd": {
+              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(1), '-osdisk.vhd')]"
+            },
+            "caching": "ReadWrite",
+            "createOption": "FromImage"
+          },
+          "dataDisks": [
+            {
+              "vhd": {
+                "uri":"[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(1), '-Data-1.vhd')]"
+              },
+              "name":"[concat(parameters('sqlVMName'), copyindex(1),'-data-disk1')]",
+              "caching" : "None",
+              "createOption": "empty",
+              "diskSizeGB": 1000,
+              "lun": 0
+            }
+          ]
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId(resourceGroup().name,'Microsoft.Network/networkInterfaces',concat(parameters('sqlVMName'), copyindex(1),'-nic'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": "true",
+            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'diag.blob.core.windows.net')]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
+
 
