@@ -185,7 +185,7 @@
          "rdpIPAdressSetupURL":"[concat(parameters('baseUrl'),'/publicip-rdp.json')]",
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
-         "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
+         "creatingSQLVMURL":"[concat(parameters('baseUrl'),'/creatingSQLVM.json')]",
          "vnetSetupURL":"[concat(parameters('baseUrl'),'/vnet-new.json')]",
          "creatingNicsUrl":"[concat(parameters('baseUrl'),'/creatingNICS.json')]"
       },
