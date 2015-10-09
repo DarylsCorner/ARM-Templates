@@ -474,59 +474,26 @@
                "location":{
                   "value":"[parameters('location')]"
                },
-               "adPDCNicName":{
-                  "value":"[variables('adPDCNicName')]"
+               "sqlNicName":{
+                  "value":"[variables('sqlNicName')]"
                },
-               "adPDCNICIPAddress":{
-                  "value":"[parameters('adPDCNICIPAddress')]"
-               },
-               "staticSubnetRef":{
-                  "value":"[variables('staticSubnetRef')]"
-               },
-               "adBEAddressPoolID":{
-                  "value":"[variables('derivedIds').adBEAddressPoolID]"
-               },
-               "adRDPNATRuleID":{
-                  "value":"[variables('derivedIds').adRDPNATRuleID]"
-               },
-               "adBDCNicName":{
-                  "value":"[variables('adBDCNicName')]"
-               },
-               "adBDCNICIPAddress":{
-                  "value":"[parameters('adBDCNICIPAddress')]"
-               },
-               "sqlVMName":{
-                  "value":"[variables('vmSettings').sqlVMName]"
+               "sqlNICIPAddress":{
+                  "value":"[parameters('sqlNICIPAddress')]"
                },
                "sqlSubnetRef":{
                   "value":"[variables('sqlSubnetRef')]"
                },
-               "sqlBEAddressPoolID":{
-                  "value":"[variables('derivedIds').sqlBEAddressPoolID]"
+               "sqlVMName":{
+                  "value":"[variables('vmSettings').sqlVMName]"
                },
-               "spwebVMName":{
-                  "value":"[variables('vmSettings').spwebVMName]"
+               "tsSubnetRef":{
+                  "value":"[variables('tsSubnetRef')]"
                },
-               "spWebSubnetRef":{
-                  "value":"[variables('spWebSubnetRef')]"
+               "tsVMName":{
+                  "value":"[variables('vmSettings').tsVMName]"
                },
-               "spWebBEAddressPoolID":{
-                  "value":"[variables('derivedIds').spWebBEAddressPoolID]"
-               },
-               "spappVMName":{
-                  "value":"[variables('vmSettings').spappVMName]"
-               },
-               "spAppSubnetRef":{
-                  "value":"[variables('spAppSubnetRef')]"
-               },
-               "spCABEAddressPoolID":{
-                  "value":"[variables('derivedIds').spCABEAddressPoolID]"
-               },
-               "spCANATRuleID":{
-                  "value":"[variables('derivedIds').spCANATRuleID]"
-               },
-               "sqlwNicName":{
-                  "value":"[variables('sqlwNicName')]"
+               "tsNicName":{
+                  "value":"[variables('tsNicName')]"
                }
             }
          }
