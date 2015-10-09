@@ -68,7 +68,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(1), '-osdisk.vhd')]"
+              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/',parameters('sqlVMName'), copyindex(1), '-osdisk.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
@@ -76,7 +76,7 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri":"[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(1), '-Data-1.vhd')]"
+                "uri":"[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net/',parameters('vmContainerName'),'/', parameters('sqlVMName'), copyindex(1), '-Data-1.vhd')]"
               },
               "name":"[concat(parameters('sqlVMName'), copyindex(1),'-data-disk1')]",
               "caching" : "None",
