@@ -20,12 +20,26 @@
       "type": "string",
       "defaultValue": "msa-vm-sql"
     },
-    "tsNicName": {
+    "tsgroupANicName": {
       "type": "string"
     },
-    "tsVMName": {
+    "tsgroupBNicName": {
+      "type": "string"
+    },
+    "tsgroupCNicName": {
+      "type": "string"
+    },
+    "tsgroupAVMName": {
       "type": "string",
-      "defaultValue": "msa-vm-ts"
+      "defaultValue": "msa-vm-tsA"
+    },
+    "tsgroupBVMName": {
+      "type": "string",
+      "defaultValue": "msa-vm-tsB"
+    },
+    "tsgroupCVMName": {
+      "type": "string",
+      "defaultValue": "msa-vm-tsC"
     },
     "tsSubnetRef": {
       "type": "string"
@@ -57,7 +71,7 @@
     }
   },
   {
-    "name": "[concat(parameters('tsVMName'), copyindex(),'-nic')]",
+    "name": "[concat(parameters('tsgroupAVMName'), copyindex(1),'-nic')]",
     "type": "Microsoft.Network/networkInterfaces",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
@@ -66,8 +80,8 @@
         "costCenter": "[variables('costCenter')]"
       },
     "copy": {
-      "name": "tsnicLoop",
-      "count": 6
+      "name": "tsgroupAnicLoop",
+      "count": 2
     },
     "properties": {
       "ipConfigurations": [
