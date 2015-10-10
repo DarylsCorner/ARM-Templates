@@ -41,7 +41,7 @@
       "location": "[parameters('location')]",
       "copy": {
         "name": "tsvirtualMachineLoop",
-        "count": 6
+        "count": 2
       },
       "properties": {
         "hardwareProfile": {
