@@ -406,12 +406,6 @@
                },
                "tsgroupANicName":{
                   "value":"[variables('tsgroupANicName')]"
-               },
-               "tsgroupBNicName":{
-                  "value":"[variables('tsgroupBNicName')]"
-               },
-               "tsgroupCNicName":{
-                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
@@ -465,14 +459,8 @@
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
                },
-               "tsgroupANicName":{
-                  "value":"[variables('tsgroupANicName')]"
-               },
                "tsgroupBNicName":{
                   "value":"[variables('tsgroupBNicName')]"
-               },
-               "tsgroupCNicName":{
-                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
@@ -525,12 +513,6 @@
                },
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
-               },
-               "tsgroupANicName":{
-                  "value":"[variables('tsgroupANicName')]"
-               },
-               "tsgroupBNicName":{
-                  "value":"[variables('tsgroupBNicName')]"
                },
                "tsgroupCNicName":{
                   "value":"[variables('tsgroupCNicName')]"
