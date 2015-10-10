@@ -96,8 +96,63 @@
         }
       ]
     }
+  },
+  {
+    "name": "[concat(parameters('tsgroupBVMName'), copyindex(1),'-nic')]",
+    "type": "Microsoft.Network/networkInterfaces",
+    "location": "[parameters('location')]",
+    "apiVersion": "2015-06-15",
+    "tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      },
+    "copy": {
+      "name": "tsgroupBnicLoop",
+      "count": 2
+    },
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig1",
+          "properties": {
+            "privateIPAllocationMethod": "Dynamic",
+            "subnet": {
+              "id": "[parameters('tsSubnetRef')]"
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "[concat(parameters('tsgroupCVMName'), copyindex(1),'-nic')]",
+    "type": "Microsoft.Network/networkInterfaces",
+    "location": "[parameters('location')]",
+    "apiVersion": "2015-06-15",
+    "tags": {
+        "project": "[variables('project')]",
+        "costCenter": "[variables('costCenter')]"
+      },
+    "copy": {
+      "name": "tsgroupCnicLoop",
+      "count": 2
+    },
+    "properties": {
+      "ipConfigurations": [
+        {
+          "name": "ipconfig1",
+          "properties": {
+            "privateIPAllocationMethod": "Dynamic",
+            "subnet": {
+              "id": "[parameters('tsSubnetRef')]"
+            }
+          }
+        }
+      ]
+    }
   }
 ],
 "outputs": {}
 }
+
 
