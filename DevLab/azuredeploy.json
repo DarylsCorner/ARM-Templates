@@ -151,11 +151,11 @@
          "windowsImagePublisher":"MicrosoftWindowsServer",
          "windowsImageOffer":"WindowsServer",
          "windowsImageSKU":"2008-R2-SP1",
-         "rdpPort":3389,
          "windowsDiskSize":128,
          "sqlDiskSize":1000
       },
       "VnetID":"[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+      "tsNicName":"[concat(variables('vmSettings').tsVMName,'-nic')]",
       "tsSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').tsSubnetName)]",
       "sqlSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').sqlSubnetName)]",
       "sqlNicName":"[concat(variables('vmSettings').sqlVMName,'1-nic')]",
@@ -182,7 +182,6 @@
       "configuration":{
          "vnetwithDNSTemplateURL":"[concat(parameters('baseUrl'),'/vnet-with-dns-server.json')]",
          "nicTemplateURL":"[concat(parameters('baseUrl'),'/nic.json')]",
-         "rdpIPAdressSetupURL":"[concat(parameters('baseUrl'),'/publicip-rdp.json')]",
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
          "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
@@ -212,41 +211,6 @@
                },
                "storageAccountType":{
                   "value":"[parameters('storageAccountType')]"
-               }
-            }
-         }
-      },
-      {
-         "name":"SettingUpRdp",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').rdpIPAdressSetupURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "rdpIPAddressName":{
-                  "value":"[variables('rdpIPAddressName')]"
-               },
-               "rdpLBName":{
-                  "value":"[variables('lbSettings').rdpLBName]"
-               },
-               "rdpLBFE":{
-                  "value":"[variables('lbSettings').rdpLBFE]"
-               },
-               "adLBBE":{
-                  "value":"[variables('lbSettings').adLBBE]"
-               },
-               "RDPNAT":{
-                  "value":"[variables('RDPNAT')]"
-               },
-               "rdplbFEConfigID":{
-                  "value":"[variables('derivedIds').rdplbFEConfigID]"
                }
             }
          }
@@ -323,17 +287,14 @@
                "location":{
                   "value":"[parameters('location')]"
                },
-               "adAvailabilitySetName":{
-                  "value":"[variables('vmSettings').availabilitySets.adAvailabilitySetName]"
+               "groupAAvailabilitySetName":{
+                  "value":"[variables('vmSettings').availabilitySets.groupAAvailabilitySetName]"
                },
-               "sqlAvailabilitySetName":{
-                  "value":"[variables('vmSettings').availabilitySets.sqlAvailabilitySetName]"
+               "groupBAvailabilitySetName":{
+                  "value":"[variables('vmSettings').availabilitySets.groupBAvailabilitySetName]"
                },
-               "spWebAvailabilitySetName":{
-                  "value":"[variables('vmSettings').availabilitySets.spWebAvailabilitySetName]"
-               },
-               "spAppAvailabilitySetName":{
-                  "value":"[variables('vmSettings').availabilitySets.spAppAvailabilitySetName]"
+               "groupCAvailabilitySetName":{
+                  "value":"[variables('vmSettings').availabilitySets.groupCAvailabilitySetName]"
                }
             }
          }
@@ -369,8 +330,7 @@
          "type":"Microsoft.Resources/deployments",
          "apiVersion":"2015-01-01",
          "dependsOn":[
-            "Microsoft.Resources/deployments/CreatingVirtualNetwork",
-            "Microsoft.Resources/deployments/SettingUpRdp"
+            "Microsoft.Resources/deployments/CreatingVirtualNetwork"
          ],
          "properties":{
             "mode":"Incremental",
@@ -413,8 +373,7 @@
          "dependsOn":[
             "Microsoft.Resources/deployments/CreatingStorageAccounts",
             "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
-            "Microsoft.Resources/deployments/CreatingAvailabilitySets",
-            "Microsoft.Resources/deployments/SettingUpRdp"
+            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
          ],
          "properties":{
             "mode":"Incremental",
