@@ -200,9 +200,7 @@
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
          "creatingPublicIPsURL":"[concat(parameters('baseUrl'),'/publicip-new.json')]",
-         "creatingTSgroupAVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupAVMs.json')]",
-         "creatingTSgroupBVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupBVMs.json')]",
-         "creatingTSgroupCVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupCVMs.json')]",
+         "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
          "vnetSetupURL":"[concat(parameters('baseUrl'),'/vnet-new.json')]",
          "creatingNicsUrl":"[concat(parameters('baseUrl'),'/creatingNICS.json')]"
@@ -399,13 +397,13 @@
                "storageAccountNamePrefix":{
                   "value":"[parameters('storageAccountNamePrefix')]"
                },
-               "availabilitySet":{
+               "groupAAvailabilitySet":{
                   "value":"[reference('CreatingAvailabilitySets').outputs.groupAAvailabilitySetName.value]"
                },
-               "availabilitySet":{
+               "groupBAvailabilitySet":{
                   "value":"[reference('CreatingAvailabilitySets').outputs.groupBAvailabilitySetName.value]"
                },
-               "availabilitySet":{
+               "groupCAvailabilitySet":{
                   "value":"[reference('CreatingAvailabilitySets').outputs.groupCAvailabilitySetName.value]"
                },
                "tsVMSize":{
@@ -434,171 +432,6 @@
                },
                "tsgroupBNicName":{
                   "value":"[variables('tsgroupBNicName')]"
-               },
-               "tsgroupCNicName":{
-                  "value":"[variables('tsgroupCNicName')]"
-               }
-            }
-         }
-      },
-      {
-         "name":"CreatingTSgroupAVirtualMachines ",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "Microsoft.Resources/deployments/CreatingStorageAccounts",
-            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
-            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').creatingTSgroupAVMsURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "tsgroupAVMName":{
-                  "value":"[variables('vmSettings').tsgroupAVMName]"
-               },
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "storageAccountNamePrefix":{
-                  "value":"[parameters('storageAccountNamePrefix')]"
-               },
-               "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.groupAAvailabilitySetName.value]"
-               },
-               "tsVMSize":{
-                  "value":"[parameters('tsVMSize')]"
-               },
-               "adminUsername":{
-                  "value":"[parameters('adminUsername')]"
-               },
-               "adminPassword":{
-                  "value":"[parameters('adminPassword')]"
-               },
-               "windowsImagePublisher":{
-                  "value":"[variables('vmSettings').windowsImagePublisher]"
-               },
-               "windowsImageOffer":{
-                  "value":"[variables('vmSettings').windowsImageOffer]"
-               },
-               "windowsImageSKU":{
-                  "value":"[variables('vmSettings').windowsImageSKU]"
-               },
-               "vmContainerName":{
-                  "value":"[variables('vmSettings').vmContainerName]"
-               },
-               "tsgroupANicName":{
-                  "value":"[variables('tsgroupANicName')]"
-               }
-            }
-         }
-      },
-      {
-         "name":"CreatingTSgroupBVirtualMachines ",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "Microsoft.Resources/deployments/CreatingStorageAccounts",
-            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
-            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').creatingTSgroupBVMsURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "tsgroupBVMName":{
-                  "value":"[variables('vmSettings').tsgroupBVMName]"
-               },
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "storageAccountNamePrefix":{
-                  "value":"[parameters('storageAccountNamePrefix')]"
-               },
-               "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.groupBAvailabilitySetName.value]"
-               },
-               "tsVMSize":{
-                  "value":"[parameters('tsVMSize')]"
-               },
-               "adminUsername":{
-                  "value":"[parameters('adminUsername')]"
-               },
-               "adminPassword":{
-                  "value":"[parameters('adminPassword')]"
-               },
-               "windowsImagePublisher":{
-                  "value":"[variables('vmSettings').windowsImagePublisher]"
-               },
-               "windowsImageOffer":{
-                  "value":"[variables('vmSettings').windowsImageOffer]"
-               },
-               "windowsImageSKU":{
-                  "value":"[variables('vmSettings').windowsImageSKU]"
-               },
-               "vmContainerName":{
-                  "value":"[variables('vmSettings').vmContainerName]"
-               },
-               "tsgroupBNicName":{
-                  "value":"[variables('tsgroupBNicName')]"
-               }
-            }
-         }
-      },
-      {
-         "name":"CreatingTSgroupCVirtualMachines ",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "dependsOn":[
-            "Microsoft.Resources/deployments/CreatingStorageAccounts",
-            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
-            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
-         ],
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').creatingTSgroupCVMsURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "tsgroupCVMName":{
-                  "value":"[variables('vmSettings').tsgroupCVMName]"
-               },
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "storageAccountNamePrefix":{
-                  "value":"[parameters('storageAccountNamePrefix')]"
-               },
-               "availabilitySet":{
-                  "value":"[reference('CreatingAvailabilitySets').outputs.groupCAvailabilitySetName.value]"
-               },
-               "tsVMSize":{
-                  "value":"[parameters('tsVMSize')]"
-               },
-               "adminUsername":{
-                  "value":"[parameters('adminUsername')]"
-               },
-               "adminPassword":{
-                  "value":"[parameters('adminPassword')]"
-               },
-               "windowsImagePublisher":{
-                  "value":"[variables('vmSettings').windowsImagePublisher]"
-               },
-               "windowsImageOffer":{
-                  "value":"[variables('vmSettings').windowsImageOffer]"
-               },
-               "windowsImageSKU":{
-                  "value":"[variables('vmSettings').windowsImageSKU]"
-               },
-               "vmContainerName":{
-                  "value":"[variables('vmSettings').vmContainerName]"
                },
                "tsgroupCNicName":{
                   "value":"[variables('tsgroupCNicName')]"
