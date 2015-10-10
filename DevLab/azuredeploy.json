@@ -146,7 +146,9 @@
          },
          "noOfSqlVMs":1,
          "vmContainerName":"vhds",
-         "tsVMName":"msa-vm-ts",
+         "tsgroupAVMName":"msa-vm-tsA",
+         "tsgroupBVMName":"msa-vm-tsB",
+         "tsgroupCVMName":"msa-vm-tsC",
          "sqlVMName":"msa-vm-sql",
          "windowsImagePublisher":"MicrosoftWindowsServer",
          "windowsImageOffer":"WindowsServer",
@@ -355,8 +357,8 @@
                "contentVersion":"1.0.0.0"
             },
             "parameters":{
-               "tsVMName":{
-                  "value":"[variables('vmSettings').tsVMName]"
+               "tsgroupAVMName":{
+                  "value":"[variables('vmSettings').tsgroupAVMName]"
                },
                "location":{
                   "value":"[parameters('location')]"
@@ -410,8 +412,8 @@
                "contentVersion":"1.0.0.0"
             },
             "parameters":{
-               "tsVMName":{
-                  "value":"[variables('vmSettings').tsVMName]"
+               "tsgroupBVMName":{
+                  "value":"[variables('vmSettings').tsgroupBVMName]"
                },
                "location":{
                   "value":"[parameters('location')]"
@@ -465,8 +467,8 @@
                "contentVersion":"1.0.0.0"
             },
             "parameters":{
-               "tsVMName":{
-                  "value":"[variables('vmSettings').tsVMName]"
+               "tsgroupCVMName":{
+                  "value":"[variables('vmSettings').tsgroupCVMName]"
                },
                "location":{
                   "value":"[parameters('location')]"
