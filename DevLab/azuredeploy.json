@@ -157,7 +157,9 @@
          "sqlDiskSize":1000
       },
       "VnetID":"[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-      "tsNicName":"[concat(variables('vmSettings').tsVMName,'-nic')]",
+      "tsgroupANicName":"[concat(variables('vmSettings').tsgroupAVMName,'-nic')]",
+      "tsgroupBNicName":"[concat(variables('vmSettings').tsgroupBVMName,'-nic')]",
+      "tsgroupCNicName":"[concat(variables('vmSettings').tsgroupCVMName,'-nic')]",
       "tsSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').tsSubnetName)]",
       "sqlSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').sqlSubnetName)]",
       "sqlNicName":"[concat(variables('vmSettings').sqlVMName,'1-nic')]",
@@ -332,11 +334,23 @@
                "tsSubnetRef":{
                   "value":"[variables('tsSubnetRef')]"
                },
-               "tsVMName":{
-                  "value":"[variables('vmSettings').tsVMName]"
+               "tsgroupAVMName":{
+                  "value":"[variables('vmSettings').tsgroupAVMName]"
                },
-               "tsNicName":{
-                  "value":"[variables('tsNicName')]"
+               "tsgroupBVMName":{
+                  "value":"[variables('vmSettings').tsgroupBVMName]"
+               },
+               "tsgroupCVMName":{
+                  "value":"[variables('vmSettings').tsgroupCVMName]"
+               },
+               "tsgroupANicName":{
+                  "value":"[variables('tsgroupANicName')]"
+               },
+               "tsgroupBNicName":{
+                  "value":"[variables('tsgroupBNicName')]"
+               },
+               "tsgroupCNicName":{
+                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
@@ -390,8 +404,14 @@
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
                },
-               "tsNicName":{
-                  "value":"[variables('tsNicName')]"
+               "tsgroupANicName":{
+                  "value":"[variables('tsgroupANicName')]"
+               },
+               "tsgroupBNicName":{
+                  "value":"[variables('tsgroupBNicName')]"
+               },
+               "tsgroupCNicName":{
+                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
@@ -445,8 +465,14 @@
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
                },
-               "tsNicName":{
-                  "value":"[variables('tsNicName')]"
+               "tsgroupANicName":{
+                  "value":"[variables('tsgroupANicName')]"
+               },
+               "tsgroupBNicName":{
+                  "value":"[variables('tsgroupBNicName')]"
+               },
+               "tsgroupCNicName":{
+                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
@@ -500,8 +526,14 @@
                "vmContainerName":{
                   "value":"[variables('vmSettings').vmContainerName]"
                },
-               "tsNicName":{
-                  "value":"[variables('tsNicName')]"
+               "tsgroupANicName":{
+                  "value":"[variables('tsgroupANicName')]"
+               },
+               "tsgroupBNicName":{
+                  "value":"[variables('tsgroupBNicName')]"
+               },
+               "tsgroupCNicName":{
+                  "value":"[variables('tsgroupCNicName')]"
                }
             }
          }
