@@ -11,6 +11,9 @@
     "storageAccountNamePrefix": {
       "type": "string"
     },
+    "availabilitySet" : {
+      "type" : "string"
+    },
     "tsVMSize" : {
       "type" : "string"
     },
@@ -46,6 +49,9 @@
       "properties": {
         "hardwareProfile": {
           "vmSize": "[parameters('tsVMSize')]"
+        },
+        "availabilitySet": {
+          "id": "[parameters('availabilitySet')]"
         },
         "osProfile": {
           "computername": "[concat(parameters('tsVMName'), copyindex(1))]",
