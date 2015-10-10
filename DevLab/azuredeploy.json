@@ -184,8 +184,6 @@
          }
       ],
       "configuration":{
-         "vnetwithDNSTemplateURL":"[concat(parameters('baseUrl'),'/vnet-with-dns-server.json')]",
-         "nicTemplateURL":"[concat(parameters('baseUrl'),'/nic.json')]",
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
          "creatingTSgroupAVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupAVMs.json')]",
