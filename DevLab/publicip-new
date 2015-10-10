@@ -28,6 +28,10 @@
         "project": "[variables('project')]",
         "costCenter": "[variables('costCenter')]"
       },
+      "copy": {
+      "name": "tsPublicIPLoop",
+      "count": 6
+    },
       "properties": {
         "publicIPAllocationMethod": "[parameters('publicIPAddressType')]",
         "dnsSettings": {
