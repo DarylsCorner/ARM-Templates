@@ -193,7 +193,10 @@
          {
             "name":"[variables('subnetNames').sqlSubnetName]",
             "properties":{
-               "addressPrefix":"[parameters('sqlSubnet')]"
+               "addressPrefix":"[parameters('sqlSubnet')]",
+               "networkSecurityGroup":{
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+               }
             }
          }
       ],
