@@ -170,6 +170,7 @@
          "sqlDiskSize":1000
       },
       "VnetID":"[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+      "networkSecurityGroupName":"msa-nsg1",
       "tsgroupANicName":"[concat(variables('vmSettings').tsgroupAVMName,'-nic')]",
       "tsgroupBNicName":"[concat(variables('vmSettings').tsgroupBVMName,'-nic')]",
       "tsgroupCNicName":"[concat(variables('vmSettings').tsgroupCVMName,'-nic')]",
@@ -199,6 +200,7 @@
       "configuration":{
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
+         "networkSecurityGroupUrl":"[concat(parameters('baseUrl'),'/creatingNetworkSecurityGroup.json')]"
          "creatingPublicIPsURL":"[concat(parameters('baseUrl'),'/publicip-new.json')]",
          "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
@@ -287,9 +289,32 @@
          }
       },
       {
+        "name":"CreatingNetworkSecurityGroup",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2015-05-01-preview",
+        "properties": {
+            "mode":"Incremental",
+            "templateLink":{
+                "uri":"[variables('configuration').networkSecurityGroupURL]",
+                "contentVersion":"1.0.0.0"
+            },
+            "parameters":{
+               "location":{
+                  "value":"[parameters('location')]"
+               },
+               "networkSecurityGroupName":{
+                  "value":"[variables('networkSecurityGroupName)]"
+               }
+            }
+        }
+      },
+      {
          "name":"CreatingVirtualNetwork",
          "type":"Microsoft.Resources/deployments",
          "apiVersion":"2015-01-01",
+         "dependsOn":[
+            "Microsoft.Resources/deployments/CreatingNetworkSecurityGroup"
+         ],
          "properties":{
             "mode":"Incremental",
             "templateLink":{
@@ -491,7 +516,7 @@
    ],
    "outputs": {
      "fqdn": {
-       "value": "[reference('SettingUpSharepointWebPublicIP').outputs.fqdn.value]",
+       "value": "[reference('CreatingPublicIPs').outputs.fqdn.value]",
        "type": "string"
      }
    }
