@@ -184,7 +184,9 @@
          "nicTemplateURL":"[concat(parameters('baseUrl'),'/nic.json')]",
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
-         "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
+         "creatingTSgroupAVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupAVMs.json')]",
+         "creatingTSgroupBVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupBVMs.json')]",
+         "creatingTSgroupCVMsURL":"[concat(parameters('baseUrl'),'/creatingTSgroupCVMs.json')]",
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
          "vnetSetupURL":"[concat(parameters('baseUrl'),'/vnet-new.json')]",
          "creatingNicsUrl":"[concat(parameters('baseUrl'),'/creatingNICS.json')]"
@@ -240,35 +242,6 @@
                },
                "publicIpRGName":{
                   "value":"[parameters('spWebIPRGName')]"
-               }
-            }
-         }
-      },
-      {
-         "name":"SettingUpSharepointCentralAdminPublicIP",
-         "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
-         "properties":{
-            "mode":"Incremental",
-            "templateLink":{
-               "uri":"[variables('configuration').spCAIPAdressSetupURL]",
-               "contentVersion":"1.0.0.0"
-            },
-            "parameters":{
-               "location":{
-                  "value":"[parameters('location')]"
-               },
-               "publicIPAddressName":{
-                  "value":"[parameters('spCAIPAddressName')]"
-               },
-               "publicIPAddressType":{
-                  "value":"dynamic"
-               },
-               "dnsPrefix":{
-                  "value":"[parameters('spCADNSPrefix')]"
-               },
-               "publicIpRGName":{
-                  "value":"[parameters('spCARGName')]"
                }
             }
          }
@@ -393,6 +366,116 @@
                },
                "availabilitySet":{
                   "value":"[reference('CreatingAvailabilitySets').outputs.groupAAvailabilitySetName.value]"
+               },
+               "tsVMSize":{
+                  "value":"[parameters('tsVMSize')]"
+               },
+               "adminUsername":{
+                  "value":"[parameters('adminUsername')]"
+               },
+               "adminPassword":{
+                  "value":"[parameters('adminPassword')]"
+               },
+               "windowsImagePublisher":{
+                  "value":"[variables('vmSettings').windowsImagePublisher]"
+               },
+               "windowsImageOffer":{
+                  "value":"[variables('vmSettings').windowsImageOffer]"
+               },
+               "windowsImageSKU":{
+                  "value":"[variables('vmSettings').windowsImageSKU]"
+               },
+               "vmContainerName":{
+                  "value":"[variables('vmSettings').vmContainerName]"
+               },
+               "tsNicName":{
+                  "value":"[variables('tsNicName')]"
+               }
+            }
+         }
+      },
+      {
+         "name":"CreatingTSgroupBVirtualMachines ",
+         "type":"Microsoft.Resources/deployments",
+         "apiVersion":"2015-01-01",
+         "dependsOn":[
+            "Microsoft.Resources/deployments/CreatingStorageAccounts",
+            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
+            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
+         ],
+         "properties":{
+            "mode":"Incremental",
+            "templateLink":{
+               "uri":"[variables('configuration').creatingTSgroupBVMsURL]",
+               "contentVersion":"1.0.0.0"
+            },
+            "parameters":{
+               "tsVMName":{
+                  "value":"[variables('vmSettings').tsVMName]"
+               },
+               "location":{
+                  "value":"[parameters('location')]"
+               },
+               "storageAccountNamePrefix":{
+                  "value":"[parameters('storageAccountNamePrefix')]"
+               },
+               "availabilitySet":{
+                  "value":"[reference('CreatingAvailabilitySets').outputs.groupBAvailabilitySetName.value]"
+               },
+               "tsVMSize":{
+                  "value":"[parameters('tsVMSize')]"
+               },
+               "adminUsername":{
+                  "value":"[parameters('adminUsername')]"
+               },
+               "adminPassword":{
+                  "value":"[parameters('adminPassword')]"
+               },
+               "windowsImagePublisher":{
+                  "value":"[variables('vmSettings').windowsImagePublisher]"
+               },
+               "windowsImageOffer":{
+                  "value":"[variables('vmSettings').windowsImageOffer]"
+               },
+               "windowsImageSKU":{
+                  "value":"[variables('vmSettings').windowsImageSKU]"
+               },
+               "vmContainerName":{
+                  "value":"[variables('vmSettings').vmContainerName]"
+               },
+               "tsNicName":{
+                  "value":"[variables('tsNicName')]"
+               }
+            }
+         }
+      },
+      {
+         "name":"CreatingTSgroupCVirtualMachines ",
+         "type":"Microsoft.Resources/deployments",
+         "apiVersion":"2015-01-01",
+         "dependsOn":[
+            "Microsoft.Resources/deployments/CreatingStorageAccounts",
+            "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
+            "Microsoft.Resources/deployments/CreatingAvailabilitySets"
+         ],
+         "properties":{
+            "mode":"Incremental",
+            "templateLink":{
+               "uri":"[variables('configuration').creatingTSgroupCVMsURL]",
+               "contentVersion":"1.0.0.0"
+            },
+            "parameters":{
+               "tsVMName":{
+                  "value":"[variables('vmSettings').tsVMName]"
+               },
+               "location":{
+                  "value":"[parameters('location')]"
+               },
+               "storageAccountNamePrefix":{
+                  "value":"[parameters('storageAccountNamePrefix')]"
+               },
+               "availabilitySet":{
+                  "value":"[reference('CreatingAvailabilitySets').outputs.groupCAvailabilitySetName.value]"
                },
                "tsVMSize":{
                   "value":"[parameters('tsVMSize')]"
