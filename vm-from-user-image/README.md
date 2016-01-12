@@ -1,4 +1,4 @@
-<H1>Create a Virtual Machine from a User Image</H1>
+# Create a Virtual Machine from a User Image
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https://github.com/DarylsCorner/ARM-Templates/blob/master/vm-from-user-image/azuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
