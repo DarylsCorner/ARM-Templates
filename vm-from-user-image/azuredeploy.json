@@ -194,7 +194,7 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "[variables('privateIPAllocationMethod')]"
+              "privateIPAllocationMethod": "[variables('privateIPAllocationMethod')]",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
               },
