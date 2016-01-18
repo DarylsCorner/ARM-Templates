@@ -61,13 +61,14 @@
     "api-version": "2015-06-15",
     "location": "[resourceGroup().location]",
     "publicIPAddressName": "pry-pip1",
+    "publicIPAddressType": "Static",
     "vmName": "pry-vm1",
     "virtualNetworkName": "pry-vnet1",
     "nicName": "pry-vm1-nic",
     "addressPrefix": "10.0.0.0/16",
     "subnet1Name": "Subnet1",
     "subnet1Prefix": "10.0.0.0/24",
-    "publicIPAddressType": "Static",
+    "privateIPAllocationMethod": "Dynamic",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
     "networkSecurityGroupName": "pry-nsg1",
@@ -193,7 +194,7 @@
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Dynamic",
+              "privateIPAllocationMethod": "[variables('privateIPAllocationMethod')]"
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
               },
