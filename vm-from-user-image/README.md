@@ -4,9 +4,9 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-+<a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/vm-from-user-image/azuredeploy.json" target="_blank">
-+  <img src="http://armviz.io/visualizebutton.png"/>
-+</a>
+<a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/vm-from-user-image/azuredeploy.json" target="_blank">
+  <img src="http://armviz.io/visualizebutton.png"/>
+</a>
 
 
 Prerequisite - The Storage Account should already exist and the custom user VHD image should be present in the storage account that will host the virtual machine OSdisk.
