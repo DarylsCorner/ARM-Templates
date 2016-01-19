@@ -6,5 +6,5 @@
 
 Prerequisite - The Storage Account should already exist and the custom user VHD image should be present in the storage account.
 
-This template allows you to create a Virtual Machine from a custom user image. This template also deploys a Virtual Network, a Network Security Group attached to the Subnet, a Public IP address and a Network Interface. Three rules are created for the NSG to allow RDP, HTTP, and HTTPS access.
+This template allows you to create a Virtual Machine from a custom user image. Ensure that you are using a Sysprep generalized image. This template also deploys a Virtual Network with one subnet, a Network Security Group attached to the Subnet, a  static Public IP address and a Network Interface with a static private IP adress. Three security rules are created for the NSG to allow inbound access for RDP, HTTP, and HTTPS.
 
