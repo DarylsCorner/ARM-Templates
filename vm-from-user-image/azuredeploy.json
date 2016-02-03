@@ -68,7 +68,7 @@
     "addressPrefix": "10.0.0.0/16",
     "subnet1Name": "Subnet1",
     "subnet1Prefix": "10.0.0.0/24",
-    "privateIPAllocationMethod": "Dynamic",
+    "privateIPAllocationMethod": "Static",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnet1Ref": "[concat(variables('vnetID'),'/subnets/',variables('subnet1Name'))]",
     "networkSecurityGroupName": "xyz-nsg1",
@@ -194,6 +194,7 @@
           {
             "name": "ipconfig1",
             "properties": {
+              "privateIPAddress": "10.0.0.4",
               "privateIPAllocationMethod": "[variables('privateIPAllocationMethod')]",
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
