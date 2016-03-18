@@ -151,6 +151,10 @@
          "tsSubnetName":"tsSubnet",
          "sqlSubnetName":"sqlSubnet"
       },
+      "tags":{
+         "project":"Test",
+         "costCenter":"Eng"
+      },
       "vmSettings":{
          "availabilitySets":{
             "groupAAvailabilitySetName":"groupAAvailabilitySet",
