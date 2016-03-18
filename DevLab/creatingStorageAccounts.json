@@ -22,10 +22,6 @@
       "name": "storageAccountLoop",
       "count": 2
     },
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "properties": {
     "accountType": "[parameters('storageAccountType')]"
     }
@@ -35,10 +31,6 @@
     "name": "[concat(parameters('storageAccountNamePrefix'), 'diag')]",
     "apiVersion": "2015-05-01-preview",
     "location": "[parameters('location')]",
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "properties": {
     "accountType": "Standard_LRS"
     }
