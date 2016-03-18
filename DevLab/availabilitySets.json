@@ -45,7 +45,7 @@
 	  	"project": "[variables('project')]",
                 "costCenter": "[variables('costCenter')]"
         }
-    },
+    }
   ],
   "outputs": {
     "groupAAvailabilitySetName": {
