@@ -111,13 +111,6 @@
          },
          "defaultValue":"10.6.3.200"
       },
-      "PublicIPRGName":{
-         "type":"string",
-         "defaultValue":"",
-         "metadata":{
-            "description":"Resource Group containing existing TS Public IP address"
-         }
-      },
       "PublicIPAddressName":{
          "type":"string",
          "metadata":{
@@ -261,9 +254,6 @@
                },
                "dnsPrefix":{
                   "value":"[parameters('dnsPrefix')]"
-               },
-               "publicIpRGName":{
-                  "value":"[parameters('PublicIPRGName')]"
                }
             }
          }
