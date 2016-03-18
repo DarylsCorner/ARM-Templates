@@ -149,7 +149,7 @@
    "variables":{
       "subnetNames":{
          "tsSubnetName":"tsSubnet",
-         "sqlSubnetName":"sqlSubnet",
+         "sqlSubnetName":"sqlSubnet"
       },
       "vmSettings":{
          "availabilitySets":{
