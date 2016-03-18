@@ -21,10 +21,6 @@
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[concat(parameters('publicIPAddressName'), copyIndex(1), '-pip')]",
       "location": "[parameters('location')]",
-      "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
       "copy": {
       "name": "tsPublicIPLoop",
       "count": 6
