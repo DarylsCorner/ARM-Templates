@@ -148,7 +148,6 @@
          "tsSubnetName":"tsSubnet",
          "sqlSubnetName":"sqlSubnet"
       },
-      "networkSecurityGroupName":"gct-nsg",
       "vmSettings":{
          "availabilitySets":{
             "groupAAvailabilitySetName":"groupAAvailabilitySet",
