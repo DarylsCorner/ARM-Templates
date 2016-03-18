@@ -15,10 +15,6 @@
       "name": "[variables('networkSecurityGroupName')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
-      "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
       "properties": {
         "securityRules": [
           {
