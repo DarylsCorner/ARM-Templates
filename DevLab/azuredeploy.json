@@ -203,7 +203,7 @@
       "configuration":{
          "availabilitySetSetupURL":"[concat(parameters('baseUrl'),'/availabilitySets.json')]",
          "creatingStorageAccounts":"[concat(parameters('baseUrl'),'/creatingStorageAccounts.json')]",
-         "networkSecurityGroupUrl":"[concat(parameters('baseUrl'),'/creatingNetworkSecurityGroup.json')]"
+         "networkSecurityGroupUrl":"[concat(parameters('baseUrl'),'/creatingNetworkSecurityGroup.json')]",
          "creatingPublicIPsURL":"[concat(parameters('baseUrl'),'/publicip-new.json')]",
          "creatingTSVMsURL":"[concat(parameters('baseUrl'),'/creatingTSVMs.json')]",
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
