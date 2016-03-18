@@ -144,10 +144,6 @@
          "tsSubnetName":"tsSubnet",
          "sqlSubnetName":"sqlSubnet"
       },
-      "tags":{
-         "project":"Test",
-         "costCenter":"Eng"
-      },
       "networkSecurityGroupName":"gct-nsg",
       "vmSettings":{
          "availabilitySets":{
