@@ -130,6 +130,10 @@
            "description":"Name of virtual network to be created"
         }
       },
+      "networkSecurityGroupName": {
+         "type":"string",
+         "defaultValue":"gct-nsg"
+      },
       "baseUrl":{
          "type":"string",
          "metadata":{
@@ -296,7 +300,7 @@
                   "value":"[parameters('location')]"
                },
                "networkSecurityGroupName":{
-                  "value":"[variables('networkSecurityGroupName')]"
+                  "value":"[parameters('networkSecurityGroupName')]"
                }
             }
         }
