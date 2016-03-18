@@ -132,7 +132,7 @@
       },
       "virtualNetworkName" : {
         "type" : "string",
-        "defaultValue" : "msa-vnet1",
+        "defaultValue" : "gct-vnet1",
         "metadata":{
            "description":"Name of virtual network to be created"
         }
@@ -159,10 +159,10 @@
          },
          "noOfSqlVMs":1,
          "vmContainerName":"vhds",
-         "tsgroupAVMName":"msa-vm-tsA",
-         "tsgroupBVMName":"msa-vm-tsB",
-         "tsgroupCVMName":"msa-vm-tsC",
-         "sqlVMName":"msa-vm-sql",
+         "tsgroupAVMName":"gct-vm-tsA",
+         "tsgroupBVMName":"gct-vm-tsB",
+         "tsgroupCVMName":"gct-vm-tsC",
+         "sqlVMName":"gct-vm-sql",
          "windowsImagePublisher":"MicrosoftWindowsServer",
          "windowsImageOffer":"WindowsServer",
          "windowsImageSKU":"2008-R2-SP1",
@@ -170,7 +170,7 @@
          "sqlDiskSize":1000
       },
       "VnetID":"[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-      "networkSecurityGroupName":"msa-nsg1",
+      "networkSecurityGroupName":"gct-nsg1",
       "tsgroupANicName":"[concat(variables('vmSettings').tsgroupAVMName,'-nic')]",
       "tsgroupBNicName":"[concat(variables('vmSettings').tsgroupBVMName,'-nic')]",
       "tsgroupCNicName":"[concat(variables('vmSettings').tsgroupCVMName,'-nic')]",
@@ -209,8 +209,7 @@
          "creatingSQLVMsURL":"[concat(parameters('baseUrl'),'/creatingSQLVMs.json')]",
          "vnetSetupURL":"[concat(parameters('baseUrl'),'/vnet-new.json')]",
          "creatingNicsUrl":"[concat(parameters('baseUrl'),'/creatingNICS.json')]"
-      },
-      "assetLocation":"https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/sharepoint-server-farm-ha/dsc"
+      }
    },
    "resources":[
       {
