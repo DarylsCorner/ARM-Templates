@@ -51,10 +51,6 @@
     "type": "Microsoft.Network/networkInterfaces",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "properties": {
       "ipConfigurations": [
         {
@@ -75,10 +71,6 @@
     "type": "Microsoft.Network/networkInterfaces",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "copy": {
       "name": "tsgroupAnicLoop",
       "count": 2
@@ -102,10 +94,6 @@
     "type": "Microsoft.Network/networkInterfaces",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "copy": {
       "name": "tsgroupBnicLoop",
       "count": 2
@@ -129,10 +117,6 @@
     "type": "Microsoft.Network/networkInterfaces",
     "location": "[parameters('location')]",
     "apiVersion": "2015-06-15",
-    "tags": {
-        "project": "[variables('project')]",
-        "costCenter": "[variables('costCenter')]"
-      },
     "copy": {
       "name": "tsgroupCnicLoop",
       "count": 2
