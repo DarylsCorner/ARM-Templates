@@ -18,7 +18,7 @@
     },
     "sqlVMName": {
       "type": "string",
-      "defaultValue": "msa-vm-sql"
+      "defaultValue": "gct-vm-sql"
     },
     "tsgroupANicName": {
       "type": "string"
@@ -31,15 +31,15 @@
     },
     "tsgroupAVMName": {
       "type": "string",
-      "defaultValue": "msa-vm-tsA"
+      "defaultValue": "gct-vm-tsA"
     },
     "tsgroupBVMName": {
       "type": "string",
-      "defaultValue": "msa-vm-tsB"
+      "defaultValue": "gct-vm-tsB"
     },
     "tsgroupCVMName": {
       "type": "string",
-      "defaultValue": "msa-vm-tsC"
+      "defaultValue": "gct-vm-tsC"
     },
     "tsSubnetRef": {
       "type": "string"
