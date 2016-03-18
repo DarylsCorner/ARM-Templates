@@ -309,7 +309,7 @@
                   "value":"[parameters('location')]"
                },
                "networkSecurityGroupName":{
-                  "value":"[variables('networkSecurityGroupName)]"
+                  "value":"[variables('networkSecurityGroupName')]"
                }
             }
         }
