@@ -148,6 +148,7 @@
          "project":"Test",
          "costCenter":"Eng"
       },
+      "networkSecurityGroupName":"gct-nsg",
       "vmSettings":{
          "availabilitySets":{
             "groupAAvailabilitySetName":"groupAAvailabilitySet",
