@@ -2,4 +2,4 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-
+#This template demonstrates the use of nested templates#
