@@ -287,7 +287,7 @@
       {
         "name":"CreatingNetworkSecurityGroup",
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2016-02-01-preview",
+        "apiVersion": "2016-02-01",
         "properties": {
             "mode":"Incremental",
             "templateLink":{
