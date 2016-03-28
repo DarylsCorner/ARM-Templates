@@ -235,7 +235,7 @@
       {
          "name":"CreatingPublicIPs",
          "type":"Microsoft.Resources/deployments",
-         "apiVersion":"2015-01-01",
+         "apiVersion":"2016-02-01",
          "properties":{
             "mode":"Incremental",
             "templateLink":{
@@ -287,7 +287,7 @@
       {
         "name":"CreatingNetworkSecurityGroup",
         "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2015-05-01-preview",
+        "apiVersion": "2016-02-01-preview",
         "properties": {
             "mode":"Incremental",
             "templateLink":{
