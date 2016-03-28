@@ -239,7 +239,7 @@
          "properties":{
             "mode":"Incremental",
             "templateLink":{
-               "uri":"https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/DevLab/publicip-new.json",
+               "uri":"https://raw.githubusercontent.com/DarylsCorner/ARM-Templates/master/DevLab/publicIP-new.json",
                "contentVersion":"1.0.0.0"
             },
             "parameters":{
