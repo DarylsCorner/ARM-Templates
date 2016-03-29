@@ -40,13 +40,13 @@
           {
             "name": "[parameters('tsSubnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('tsSubnet')]",
+              "addressPrefix": "[parameters('tsSubnet')]"
             }
           },
           {
             "name": "[parameters('sqlSubnetName')]",
             "properties": {
-              "addressPrefix": "[parameters('sqlSubnet')]",
+              "addressPrefix": "[parameters('sqlSubnet')]"
             }
           }
         ]
