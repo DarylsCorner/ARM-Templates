@@ -97,6 +97,20 @@
          },
          "defaultValue":"10.6.2.0/24"
       },
+      "tsSubnetName":{
+         "type":"string",
+         "metadata":{
+            "description":"The name of the Terminal servers subnet"
+         },
+         "defaultValue":"tsSubnet"
+      },
+      "sqlSubnetName":{
+         "type":"string",
+         "metadata":{
+            "description":"The name of the SQL server subnet"
+         },
+         "defaultValue":"sqlSubnet"
+      },
       "sqlSubnet":{
          "type":"string",
          "metadata":{
@@ -144,10 +158,6 @@
       }
    },
    "variables":{
-      "subnetNames":{
-         "tsSubnetName":"tsSubnet",
-         "sqlSubnetName":"sqlSubnet"
-      },
       "vmSettings":{
          "availabilitySets":{
             "groupAAvailabilitySetName":"groupAAvailabilitySet",
@@ -171,8 +181,8 @@
       "tsgroupANicName":"[concat(variables('vmSettings').tsgroupAVMName,'-nic')]",
       "tsgroupBNicName":"[concat(variables('vmSettings').tsgroupBVMName,'-nic')]",
       "tsgroupCNicName":"[concat(variables('vmSettings').tsgroupCVMName,'-nic')]",
-      "tsSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').tsSubnetName)]",
-      "sqlSubnetRef":"[concat(variables('VnetID'),'/subnets/',variables('subnetNames').sqlSubnetName)]",
+      "tsSubnetRef":"[concat(variables('VnetID'),'/subnets/',parameters('tsSubnetName'))]",
+      "sqlSubnetRef":"[concat(variables('VnetID'),'/subnets/',parameters('sqlSubnetName'))]",
       "sqlNicName":"[concat(variables('vmSettings').sqlVMName,'1-nic')]",
       "ids":{
          "sqlNicId":"[resourceId('Microsoft.Network/networkInterfaces',variables('sqlNicName'))]"
@@ -182,13 +192,13 @@
       },
       "subnets":[
          {
-            "name":"[variables('subnetNames').tsSubnetName]",
+            "name":"[parameters('tsSubnetName')]",
             "properties":{
                "addressPrefix":"[parameters('tsSubnet')]"
             }
          },
          {
-            "name":"[variables('subnetNames').sqlSubnetName]",
+            "name":"[parameters('sqlSubnetName')]",
             "properties":{
                "addressPrefix":"[parameters('sqlSubnet')]",
                "networkSecurityGroup":{
@@ -327,9 +337,17 @@
                "virtualNetworkAddressRange":{
                   "value":"[parameters('virtualNetworkAddressRange')]"
                },
-               "subnets":{
-                  "value":"[parameters('tsSubnet')]",
-                  "value":"[parameters('sqlSubnet)]"
+               "tsSubnetName":{
+                  "value":"[parameters('tsSubnetName')]"
+               },
+               "sqlSubnetName":{
+                  "value":"[parameters('sqlSubnetName')]"
+               },
+               "tsSubnet":{
+                  "value":"[parameters('tsSubnet')]"
+               },
+               "sqlSubnet":{
+                    "value":"[parameters('sqlSubnet')]}"
                }
             }
          }
