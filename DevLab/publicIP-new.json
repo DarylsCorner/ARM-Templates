@@ -28,7 +28,7 @@
       "properties": {
         "publicIPAllocationMethod": "[parameters('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('dNSPrefix'), copyIndex(1))]"
+          "domainNameLabel": "[parameters('dNSPrefix'), copyIndex(1)]"
         }
       }
     }
