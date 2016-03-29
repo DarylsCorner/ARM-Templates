@@ -11,8 +11,17 @@
     "virtualNetworkAddressRange": {
       "type": "string"
     },
-    "subnets": {
-      "type": "array"
+    "tsSubnetName": {
+      "type": "string"
+    },
+    "tsSubnet": {
+      "type": "string"
+    },
+    "sqlSubnetName": {
+      "type": "string"
+    },
+    "sqlSubnet": {
+      "type": "string"
     }
   },
   "resources": [
@@ -27,7 +36,20 @@
             "[parameters('virtualNetworkAddressRange')]"
           ]
         },
-        "subnets": "[parameters('subnets')]"
+        "subnets": [
+          {
+            "name": "[parameters('tsSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('tsSubnet')]",
+            }
+          },
+          {
+            "name": "[parameters('sqlSubnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('sqlSubnet')]",
+            }
+          }
+        ]
       }
     }
   ]
