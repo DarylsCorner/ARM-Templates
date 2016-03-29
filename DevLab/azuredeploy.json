@@ -328,7 +328,8 @@
                   "value":"[parameters('virtualNetworkAddressRange')]"
                },
                "subnets":{
-                  "value":"[variables('subnets')]"
+                  "value":"[parameters('tsSubnet')]",
+                  "value":"[parameters('sqlSubnet)]"
                }
             }
          }
