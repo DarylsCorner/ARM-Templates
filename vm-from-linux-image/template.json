@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachineAdminUserName": {
-            "defaultValue": "admin",
+            "defaultValue": "chef",
             "type": "string",
             "metadata": {
                 "description": "UserName for the Virtual Machine"
