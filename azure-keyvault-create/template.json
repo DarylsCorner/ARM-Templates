@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vaults_sfkeyvault2_name": {
+            "defaultValue": "sfkeyvault2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "[parameters('vaults_sfkeyvault2_name')]",
+            "apiVersion": "2015-06-01",
+            "location": "West US",
+            "tags": {},
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "Standard"
+                },
+                "tenantId": "5899054d-1ec5-4bdd-8641-e40ed0e3a033",
+                "accessPolicies": [
+                    {
+                        "tenantId": "5899054d-1ec5-4bdd-8641-e40ed0e3a033",
+                        "objectId": "5a27615e-d5ec-4da7-a0f9-15df39d104b2",
+                        "permissions": {
+                            "keys": [
+                                "all"
+                            ],
+                            "secrets": [
+                                "all"
+                            ]
+                        }
+                    }
+                ],
+                "enabledForDeployment": true
+            },
+            "dependsOn": []
+        }
+    ]
+}
